@@ -528,6 +528,20 @@ script = ExtResource("14_2ebs2")
 PositionShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_oyb3p"), SubResource("Resource_psl12")])
 metadata/_custom_type_script = "uid://e0weqyqh15ib"
 
+[sub_resource type="GDScript" id="GDScript_oyb3p"]
+resource_name = "Bullet"
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 650
+
+
+func _physics_process(delta: float) -> void:
+	velocity.x =  SPEED
+
+	move_and_slide()
+"
+
 [sub_resource type="Curve" id="Curve_2ebs2"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.61710036, 0.47678012), -1.3533283, -1.3533283, 0, 0, Vector2(1, 0), -0.10707546, 0.0, 0, 0]
 point_count = 3
@@ -829,6 +843,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_8edxt"]
 resource_name = "explode"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -872,11 +887,14 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.9333334),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"_playKill"
+}, {
+"args": [],
+"method": &"_delete"
 }]
 }
 tracks/4/type = "value"
@@ -954,6 +972,9 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_psl12"]
 radius = 38.333332
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyb3p"]
+size = Vector2(339, 1183)
 
 [node name="MainScene" type="Node2D" unique_id=781206447]
 
@@ -1063,6 +1084,8 @@ attenuation = 0.37892905
 [node name="Feves" type="CharacterBody2D" parent="." unique_id=615959909]
 collision_layer = 0
 collision_mask = 0
+motion_mode = 1
+script = SubResource("GDScript_oyb3p")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Feves" unique_id=1592768731]
 z_index = 1
@@ -1116,5 +1139,12 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feves" unique_id=402655542]
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_psl12")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=547700438]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=590287058]
+position = Vector2(833.5, 26.5)
+shape = SubResource("RectangleShape2D_oyb3p")
+debug_color = Color(0.9186078, 0.25234058, 0.34601468, 0.41960785)
 
 [connection signal="timeout" from="Feves/Feve/Timer" to="Feves/Feve" method="_on_timer_timeout"]

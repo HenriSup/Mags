@@ -17,7 +17,9 @@ func _playAnimation():
 func _playKill():
 	explosion.play("default")
 
-
+func _delete():
+	queue_free()
+	
 func _on_timer_timeout():
 	$AnimationPlayer.play("explode")
 	pass # Replace with function body.
