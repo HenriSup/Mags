@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ctn2u6k41fapn" path="res://Assets/Sprites/Feves.png" id="16_psl12"]
 [ext_resource type="Script" uid="uid://cvqgw6cgslsw4" path="res://Scenes/feve.gd" id="17_2ebs2"]
 [ext_resource type="Texture2D" uid="uid://dwj67w6redmfq" path="res://Assets/Sprites/etoales-sheet2.png" id="18_2ebs2"]
+[ext_resource type="Texture2D" uid="uid://b5mr5pkm0h383" path="res://Assets/Sprites/explosion.png" id="19_oyb3p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m1efj"]
 shader = ExtResource("1_6ev3c")
@@ -527,6 +528,171 @@ script = ExtResource("14_2ebs2")
 PositionShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_oyb3p"), SubResource("Resource_psl12")])
 metadata/_custom_type_script = "uid://e0weqyqh15ib"
 
+[sub_resource type="Curve" id="Curve_2ebs2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.61710036, 0.47678012), -1.3533283, -1.3533283, 0, 0, Vector2(1, 0), -0.10707546, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_oyb3p"]
+curve = SubResource("Curve_2ebs2")
+
+[sub_resource type="Gradient" id="Gradient_jvnna"]
+offsets = PackedFloat32Array(0.46502057, 0.8765432)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b48ew"]
+gradient = SubResource("Gradient_jvnna")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8edxt"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 1)
+direction = Vector3(-60, 0, 0)
+initial_velocity_max = 71.659996
+angular_velocity_min = -56.280014
+angular_velocity_max = -56.280014
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -18.890001
+linear_accel_max = 7.1599975
+scale_min = 5.0
+scale_max = 6.0
+color_ramp = SubResource("GradientTexture1D_b48ew")
+alpha_curve = SubResource("CurveTexture_oyb3p")
+anim_speed_min = 1.8199999
+anim_speed_max = 6.98
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b48ew"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bov3"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xle81"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8qe6"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb0ja"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(800, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15kh8"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(1000, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viu5a"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(1200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b00ha"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(1400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urcnp"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(1600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpyod"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(1800, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mplvr"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(2000, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vggli"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(2200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0xgx"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(2400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrumr"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(2600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbbok"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(2800, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0uwk"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(3000, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mffef"]
+atlas = ExtResource("19_oyb3p")
+region = Rect2(3200, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2h5y0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b48ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bov3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xle81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8qe6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb0ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15kh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viu5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b00ha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urcnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpyod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mplvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vggli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0xgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrumr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbbok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0uwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mffef")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 37.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_oyb3p"]
 atlas = ExtResource("16_psl12")
 region = Rect2(0, 0, 150, 150)
@@ -648,6 +814,83 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8edxt"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.8, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.46666664),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 4.8380526865282825]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_playKill"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.06666667, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_oyb3p"]
 resource_name = "spawn"
@@ -685,7 +928,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.5, 0.6666667, 0.8),
 "transitions": PackedFloat32Array(2, 0.5, 2, 1.5157163, 1),
 "update": 0,
-"values": [-6.283185307179586, 0.0, 0.4363323129985824, -0.2617993877991494, 0.0]
+"values": [-6.283185307179586, 0.0, 0.6108652381980153, -0.4363323129985824, 0.0]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -705,6 +948,7 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jvnna"]
 _data = {
 &"RESET": SubResource("Animation_2ebs2"),
+&"explode": SubResource("Animation_8edxt"),
 &"spawn": SubResource("Animation_oyb3p")
 }
 
@@ -820,10 +1064,33 @@ attenuation = 0.37892905
 collision_layer = 0
 collision_mask = 0
 
-[node name="Feve" type="AnimatedSprite2D" parent="Feves" unique_id=2037817671]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Feves" unique_id=1592768731]
+z_index = 1
+material = SubResource("CanvasItemMaterial_huasi")
+position = Vector2(-2.9140924e-12, 1.6666665e-05)
+scale = Vector2(1e-05, 1e-05)
+emitting = false
+texture = ExtResource("18_2ebs2")
+lifetime = 0.66
+one_shot = true
+explosiveness = 0.65
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+trail_lifetime = 7.68
+process_material = SubResource("ParticleProcessMaterial_8edxt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Feves" unique_id=1995532443]
+z_index = 8
+position = Vector2(0, -21)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_2h5y0")
+frame = 18
+frame_progress = 1.0
+
+[node name="Feve" type="AnimatedSprite2D" parent="Feves" unique_id=2037817671 node_paths=PackedStringArray("explosion")]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_5bov3")
 script = ExtResource("17_2ebs2")
+explosion = NodePath("../AnimatedSprite2D")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Feves/Feve" unique_id=287868569]
 z_index = -1
@@ -840,7 +1107,14 @@ process_material = SubResource("ParticleProcessMaterial_5oxhp")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Feves/Feve" unique_id=1569500201]
 libraries/ = SubResource("AnimationLibrary_jvnna")
 autoplay = &"spawn"
+speed_scale = 1.901
+
+[node name="Timer" type="Timer" parent="Feves/Feve" unique_id=840473495]
+one_shot = true
+autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feves" unique_id=402655542]
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_psl12")
+
+[connection signal="timeout" from="Feves/Feve/Timer" to="Feves/Feve" method="_on_timer_timeout"]
