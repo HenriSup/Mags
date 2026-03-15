@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4vnjnuvfty0v"
+path="res://.godot/imported/Oliver Tree - Flowers (Lord Farquaad Performance).mp3-dfb1bcd306eb3a062f48614321d6aca8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Oliver Tree - Flowers (Lord Farquaad Performance).mp3"
+dest_files=["res://.godot/imported/Oliver Tree - Flowers (Lord Farquaad Performance).mp3-dfb1bcd306eb3a062f48614321d6aca8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
