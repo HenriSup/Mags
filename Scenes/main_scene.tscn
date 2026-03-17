@@ -532,14 +532,26 @@ metadata/_custom_type_script = "uid://e0weqyqh15ib"
 resource_name = "Bullet"
 script/source = "extends CharacterBody2D
 
+@export var spritefeve:Feve
+var SPEED = 650
 
-const SPEED = 650
 
-
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity.x =  SPEED
 
 	move_and_slide()
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group(\"enemyhurtbox\"):
+		SPEED=0
+		$Feve/AnimationPlayer.play(\"explode\")
+		area._takeHit()
+
+func _explosion():
+	$ExplosionSprite.play(\"default\")
+
+	pass # Replace with function body.
 "
 
 [sub_resource type="Curve" id="Curve_2ebs2"]
@@ -909,6 +921,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_explosion"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_oyb3p"]
 resource_name = "spawn"
@@ -972,6 +998,28 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_psl12"]
 radius = 38.333332
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oyb3p"]
+radius = 17.0
+height = 34.0
+
+[sub_resource type="GDScript" id="GDScript_jvnna"]
+resource_name = "enemyHurtBox"
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+
+func _takeHit():
+	print(\"AIEUUUUUHHHH\")
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyb3p"]
 size = Vector2(339, 1183)
@@ -1081,11 +1129,12 @@ process_material = SubResource("ParticleProcessMaterial_m1efj")
 volume_db = 13.214
 attenuation = 0.37892905
 
-[node name="Feves" type="CharacterBody2D" parent="." unique_id=615959909]
+[node name="Feves" type="CharacterBody2D" parent="." unique_id=615959909 node_paths=PackedStringArray("spritefeve")]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 script = SubResource("GDScript_oyb3p")
+spritefeve = NodePath("Feve")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Feves" unique_id=1592768731]
 z_index = 1
@@ -1101,7 +1150,7 @@ visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 trail_lifetime = 7.68
 process_material = SubResource("ParticleProcessMaterial_8edxt")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Feves" unique_id=1995532443]
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="Feves" unique_id=1995532443]
 z_index = 8
 position = Vector2(0, -21)
 scale = Vector2(0.8, 0.8)
@@ -1113,7 +1162,7 @@ frame_progress = 1.0
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_5bov3")
 script = ExtResource("17_2ebs2")
-explosion = NodePath("../AnimatedSprite2D")
+explosion = NodePath("../ExplosionSprite")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Feves/Feve" unique_id=287868569]
 z_index = -1
@@ -1137,14 +1186,27 @@ one_shot = true
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feves" unique_id=402655542]
+visible = false
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_psl12")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=547700438]
+[node name="HitBox" type="Area2D" parent="Feves" unique_id=1901067156]
+collision_layer = 8
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=590287058]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feves/HitBox" unique_id=167941082]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_oyb3p")
+
+[node name="EnemyHurtBox" type="Area2D" parent="." unique_id=547700438 groups=["enemyhurtbox"]]
+collision_layer = 8
+collision_mask = 8
+script = SubResource("GDScript_jvnna")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox" unique_id=590287058]
 position = Vector2(833.5, 26.5)
 shape = SubResource("RectangleShape2D_oyb3p")
 debug_color = Color(0.9186078, 0.25234058, 0.34601468, 0.41960785)
 
 [connection signal="timeout" from="Feves/Feve/Timer" to="Feves/Feve" method="_on_timer_timeout"]
+[connection signal="area_entered" from="Feves/HitBox" to="Feves" method="_on_hit_box_area_entered"]
