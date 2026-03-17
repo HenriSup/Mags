@@ -1024,6 +1024,8 @@ func _takeHit():
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyb3p"]
 size = Vector2(339, 1183)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oyb3p"]
+
 [node name="MainScene" type="Node2D" unique_id=781206447]
 
 [node name="StarSky" type="Sprite2D" parent="." unique_id=1664991562]
@@ -1207,6 +1209,33 @@ script = SubResource("GDScript_jvnna")
 position = Vector2(833.5, 26.5)
 shape = SubResource("RectangleShape2D_oyb3p")
 debug_color = Color(0.9186078, 0.25234058, 0.34601468, 0.41960785)
+
+[node name="worldBoundaries" type="Node2D" parent="." unique_id=1425494303]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="worldBoundaries" unique_id=669158504]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundaries/StaticBody2D" unique_id=1427432029]
+position = Vector2(0, 500)
+shape = SubResource("WorldBoundaryShape2D_oyb3p")
+debug_color = Color(0.5647059, 0.09019608, 0.1254902, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="worldBoundaries/StaticBody2D" unique_id=223388680]
+position = Vector2(0, -500)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_oyb3p")
+debug_color = Color(0.5647059, 0.09019608, 0.1254902, 1)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="worldBoundaries/StaticBody2D" unique_id=1840819078]
+position = Vector2(-925, 0)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_oyb3p")
+debug_color = Color(0.5647059, 0.09019608, 0.1254902, 1)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="worldBoundaries/StaticBody2D" unique_id=371162832]
+position = Vector2(925, 0)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_oyb3p")
+debug_color = Color(0.5647059, 0.09019608, 0.1254902, 1)
 
 [connection signal="timeout" from="Feves/Feve/Timer" to="Feves/Feve" method="_on_timer_timeout"]
 [connection signal="area_entered" from="Feves/HitBox" to="Feves" method="_on_hit_box_area_entered"]
