@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bql4durs441pe"
+path="res://.godot/imported/0205 - SE_MG_CONV_BOMB2.wav-10962e74167863569fd512e1c8210061.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/0205 - SE_MG_CONV_BOMB2.wav"
+dest_files=["res://.godot/imported/0205 - SE_MG_CONV_BOMB2.wav-10962e74167863569fd512e1c8210061.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
