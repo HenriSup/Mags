@@ -18,8 +18,28 @@
 [ext_resource type="Texture2D" uid="uid://c2fm40y8m6oah" path="res://Assets/Sprites/shooting.png" id="16_jvnna"]
 [ext_resource type="PackedScene" uid="uid://bl60xfvcbheqr" path="res://Scenes/player_bullet.tscn" id="17_psl12"]
 [ext_resource type="AudioStream" uid="uid://dc5wwre3j6yp5" path="res://Assets/Audio/SFX/00fc - SE_AIRSHOT.wav" id="18_2ebs2"]
-[ext_resource type="Texture2D" uid="uid://blcibp2e0752b" path="res://Assets/Sprites/pokemons.png" id="19_oyb3p"]
-[ext_resource type="Script" uid="uid://gsirvhsesq8" path="res://addons/shaker/data/Vector2/ShakerTypeRandom2D.gd" id="20_jvnna"]
+[ext_resource type="PackedScene" uid="uid://ddxppxn4q54ru" path="res://Scenes/pokemon.tscn" id="19_oyb3p"]
+
+[sub_resource type="GDScript" id="GDScript_b48ew"]
+resource_name = "Game"
+script/source = "extends Node2D
+@export var pokemon:PackedScene
+@export var timerSpawn:Timer
+@export var shouldSpawnPokemons:bool=false
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if timerSpawn.is_stopped() and shouldSpawnPokemons:
+		var newPokemon = pokemon.instantiate()
+		newPokemon.global_position=Vector2(1550,randi_range(-440,440))
+		get_tree().root.add_child(newPokemon)
+		timerSpawn.start(randf_range(1.5,3))
+	pass
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m1efj"]
 shader = ExtResource("1_6ev3c")
@@ -125,6 +145,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [22]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..:shouldSpawnPokemons")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ewk0"]
@@ -283,13 +315,25 @@ tracks/8/keys = {
 "update": 1,
 "values": [37, 23]
 }
-tracks/9/type = "method"
+tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../Joueur")
+tracks/9/path = NodePath("..:shouldSpawnPokemons")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
+"times": PackedFloat32Array(10.8, 26.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Joueur")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
 "times": PackedFloat32Array(10.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -563,227 +607,10 @@ size = Vector2(339, 1183)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oyb3p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jvnna"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b48ew"]
-atlas = ExtResource("19_oyb3p")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8edxt"]
-atlas = ExtResource("19_oyb3p")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5oxhp"]
-atlas = ExtResource("19_oyb3p")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nt2eh"]
-atlas = ExtResource("19_oyb3p")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5cm5d"]
-atlas = ExtResource("19_oyb3p")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5bov3"]
-atlas = ExtResource("19_oyb3p")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xle81"]
-atlas = ExtResource("19_oyb3p")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8qe6"]
-atlas = ExtResource("19_oyb3p")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_yb0ja"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b48ew")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8edxt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5oxhp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nt2eh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5cm5d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5bov3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xle81")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s8qe6")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="Animation" id="Animation_15kh8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(7, 7)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../PokemonHurtBox/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_b48ew"]
-resource_name = "die"
-length = 2.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShakerComponent2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"play_shake"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.6666667, 0.96666664),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(7, 7), Vector2(0, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../PokemonHurtBox/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_viu5a"]
-resource_name = "rolling"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -6.283185307179586]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_b00ha"]
-_data = {
-&"RESET": SubResource("Animation_15kh8"),
-&"die": SubResource("Animation_b48ew"),
-&"rolling": SubResource("Animation_viu5a")
-}
-
-[sub_resource type="Resource" id="Resource_8edxt"]
-script = ExtResource("20_jvnna")
-amplitude = Vector2(10, 10)
-metadata/_custom_type_script = "uid://gsirvhsesq8"
-
-[sub_resource type="Resource" id="Resource_5oxhp"]
-script = ExtResource("14_2ebs2")
-PositionShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_8edxt")])
-metadata/_custom_type_script = "uid://e0weqyqh15ib"
-
-[sub_resource type="GDScript" id="GDScript_oyb3p"]
-resource_name = "PokemonHurtBox"
-script/source = "
-extends Area2D
-
-@export var parent:CharacterBody2D
-@export var animationPlayer:AnimationPlayer
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var rand_Frame=randi_range(0,7)
-	
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
-func _takeHit():
-	print(\"AIEUUUUUHHHH\")
-	animationPlayer.play(\"die\")
-"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_b48ew"]
-radius = 87.50143
-
-[node name="MainScene" type="Node2D" unique_id=781206447]
+[node name="MainScene" type="Node2D" unique_id=781206447 node_paths=PackedStringArray("timerSpawn")]
+script = SubResource("GDScript_b48ew")
+pokemon = ExtResource("19_oyb3p")
+timerSpawn = NodePath("SpawnTimer")
 
 [node name="StarSky" type="Sprite2D" parent="." unique_id=1664991562]
 z_index = -3
@@ -803,7 +630,6 @@ material = SubResource("ShaderMaterial_x6ack")
 texture = ExtResource("2_jv6wh")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1294566978]
-zoom = Vector2(0.1, 0.1)
 
 [node name="Joueur" type="CharacterBody2D" parent="." unique_id=1328365591 node_paths=PackedStringArray("shooting_sprite")]
 position = Vector2(-565, 0)
@@ -877,6 +703,7 @@ stream = SubResource("AudioStreamRandomizer_b48ew")
 volume_db = 2.845
 
 [node name="EnemyHurtBox" type="Area2D" parent="." unique_id=547700438 groups=["enemyhurtbox"]]
+position = Vector2(-108, -2092)
 collision_layer = 8
 collision_mask = 8
 script = SubResource("GDScript_jvnna")
@@ -914,38 +741,8 @@ rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_oyb3p")
 debug_color = Color(0.5647059, 0.09019608, 0.1254902, 1)
 
-[node name="Pokemon" type="CharacterBody2D" parent="." unique_id=1710929280]
-scale = Vector2(0.8, 0.8)
+[node name="SpawnTimer" type="Timer" parent="." unique_id=660300972]
+one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pokemon" unique_id=314776661]
-shape = SubResource("CircleShape2D_jvnna")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pokemon" unique_id=1890845106]
-position = Vector2(-4.7683716e-06, 1.0728836e-06)
-scale = Vector2(7, 7)
-sprite_frames = SubResource("SpriteFrames_yb0ja")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pokemon/AnimatedSprite2D" unique_id=1927406710]
-libraries/ = SubResource("AnimationLibrary_b00ha")
-autoplay = &"rolling"
-
-[node name="ShakerComponent2D" type="Node2D" parent="Pokemon/AnimatedSprite2D" unique_id=1456715323]
-script = ExtResource("9_m1efj")
-duration = 0.5
-fade_in = 0.0048091616
-fade_out = 0.0032847493
-shakerPreset = SubResource("Resource_5oxhp")
-metadata/_custom_type_script = "uid://cpqa3s6je741u"
-
-[node name="PokemonHurtBox" type="Area2D" parent="Pokemon" unique_id=862061555 node_paths=PackedStringArray("parent", "animationPlayer") groups=["enemyhurtbox"]]
-position = Vector2(-832, -27)
-collision_layer = 8
-collision_mask = 8
-script = SubResource("GDScript_oyb3p")
-parent = NodePath("..")
-animationPlayer = NodePath("../AnimatedSprite2D/AnimationPlayer")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pokemon/PokemonHurtBox" unique_id=1863424512]
-position = Vector2(833.5, 26.5)
-shape = SubResource("CircleShape2D_b48ew")
-debug_color = Color(0.9186078, 0.25234058, 0.34601468, 0.41960785)
+[node name="Marker2D" type="Marker2D" parent="." unique_id=619428847]
+position = Vector2(1235, -431)

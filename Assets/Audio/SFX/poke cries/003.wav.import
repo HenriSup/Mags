@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfe46osnlw5t3"
+path="res://.godot/imported/003.wav-cf426e6c96ba7811bd04b9e513b99e67.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/poke cries/003.wav"
+dest_files=["res://.godot/imported/003.wav-cf426e6c96ba7811bd04b9e513b99e67.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
