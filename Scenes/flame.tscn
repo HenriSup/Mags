@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bt105yv7dgiv7"]
+
+[ext_resource type="Texture2D" uid="uid://b1gygvxdlwfx2" path="res://Assets/Sprites/flames.png" id="1_jwnuq"]
+[ext_resource type="Script" uid="uid://cpqa3s6je741u" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="2_06tfb"]
+[ext_resource type="Script" uid="uid://ckymxee7amoyu" path="res://addons/shaker/data/Vector2/BaseShakerType2D.gd" id="3_6scka"]
+[ext_resource type="Script" uid="uid://bcwyxf7oil2fw" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="4_5p0cg"]
+[ext_resource type="Script" uid="uid://df4napjqetode" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="5_abg21"]
+[ext_resource type="Script" uid="uid://e0weqyqh15ib" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="6_bgvof"]
+
+[sub_resource type="GDScript" id="GDScript_nt2eh"]
+resource_name = "flame"
+script/source = "extends CharacterBody2D
+
+var SPEED = -500
+
+
+func _physics_process(_delta: float) -> void:
+	velocity.x =  SPEED
+
+	move_and_slide()
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group(\"playerhurtbox\"):
+		area._takeHit()
+		$HitBox/CollisionShape2D.set_deferred(\"disabled\",true)
+	pass # Replace with function body.
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cm5d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mffef"]
+atlas = ExtResource("1_jwnuq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v2b7"]
+atlas = ExtResource("1_jwnuq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p35vf"]
+atlas = ExtResource("1_jwnuq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stxua"]
+atlas = ExtResource("1_jwnuq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37jd4"]
+atlas = ExtResource("1_jwnuq")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfj8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mffef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v2b7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p35vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stxua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37jd4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="Resource" id="Resource_so8ax"]
+script = ExtResource("5_abg21")
+amplitude = Vector2(0.1, 0.05)
+metadata/_custom_type_script = "uid://df4napjqetode"
+
+[sub_resource type="Resource" id="Resource_yu1ej"]
+script = ExtResource("6_bgvof")
+ScaleShake = Array[ExtResource("3_6scka")]([SubResource("Resource_so8ax")])
+metadata/_custom_type_script = "uid://e0weqyqh15ib"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5w0f0"]
+
+[node name="flame" type="CharacterBody2D" unique_id=625412286]
+scale = Vector2(4, 4)
+script = SubResource("GDScript_nt2eh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1284947020]
+position = Vector2(228, -357)
+shape = SubResource("CircleShape2D_5cm5d")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1239799468]
+scale = Vector2(0.90622205, 1.0173347)
+sprite_frames = SubResource("SpriteFrames_gfj8f")
+autoplay = "default"
+frame_progress = 0.39285088
+
+[node name="ShakerComponent2D" type="Node2D" parent="AnimatedSprite2D" unique_id=126646405]
+script = ExtResource("2_06tfb")
+AutoPlay = true
+shake_speed = 2.0
+shakerPreset = SubResource("Resource_yu1ej")
+metadata/_custom_type_script = "uid://cpqa3s6je741u"
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1023458419]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1637204195]
+position = Vector2(-7.5000153, 1.2500153)
+shape = SubResource("CircleShape2D_5w0f0")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

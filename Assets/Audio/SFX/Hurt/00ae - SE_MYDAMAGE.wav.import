@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d4dgmhqmef6nn"
+path="res://.godot/imported/00ae - SE_MYDAMAGE.wav-e34f5ae4cc3fb1db43b544a93d03b19d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Hurt/00ae - SE_MYDAMAGE.wav"
+dest_files=["res://.godot/imported/00ae - SE_MYDAMAGE.wav-e34f5ae4cc3fb1db43b544a93d03b19d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

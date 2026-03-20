@@ -19,12 +19,14 @@
 [ext_resource type="PackedScene" uid="uid://bl60xfvcbheqr" path="res://Scenes/player_bullet.tscn" id="17_psl12"]
 [ext_resource type="AudioStream" uid="uid://dc5wwre3j6yp5" path="res://Assets/Audio/SFX/00fc - SE_AIRSHOT.wav" id="18_2ebs2"]
 [ext_resource type="PackedScene" uid="uid://ddxppxn4q54ru" path="res://Scenes/pokemon.tscn" id="19_oyb3p"]
-[ext_resource type="AudioStream" uid="uid://doepndsydvr10" path="res://Assets/Audio/SFX/015c - SE_PLADAMAGEM.wav" id="20_5cm5d"]
 [ext_resource type="Texture2D" uid="uid://bdj7467ccgemt" path="res://Assets/Sprites/charizard.png" id="20_8edxt"]
+[ext_resource type="AudioStream" uid="uid://q14820moub2w" path="res://Assets/Audio/SFX/Hurt/00c3 - SE_KIRISAKIJS.wav" id="21_5cm5d"]
 [ext_resource type="Texture2D" uid="uid://c7wmgcvilegjr" path="res://Assets/Sprites/arrowBoss.png" id="21_5oxhp"]
 [ext_resource type="Script" uid="uid://gsirvhsesq8" path="res://addons/shaker/data/Vector2/ShakerTypeRandom2D.gd" id="21_nt2eh"]
 [ext_resource type="FontFile" uid="uid://crtajsvqo5ude" path="res://Assets/Fonts/Not Jam Giant UI 22.ttf" id="22_8edxt"]
-[ext_resource type="Texture2D" uid="uid://b1gygvxdlwfx2" path="res://Assets/Sprites/flames.png" id="24_nt2eh"]
+[ext_resource type="PackedScene" uid="uid://bt105yv7dgiv7" path="res://Scenes/flame.tscn" id="25_5cm5d"]
+[ext_resource type="AudioStream" uid="uid://dr4ifaqa28ydb" path="res://Assets/Audio/SFX/DracauFeu/01a1 - SE_REACFIRE.wav" id="26_5bov3"]
+[ext_resource type="Texture2D" uid="uid://ce2dwo0i5uwcx" path="res://Assets/Sprites/pj4_laser_beam_demo.png" id="27_xle81"]
 
 [sub_resource type="GDScript" id="GDScript_b48ew"]
 resource_name = "Game"
@@ -163,6 +165,66 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Dracaufeu:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(669, -854)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Dracaufeu:shouldShoot")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../AnimatedSprite2D:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../AnimatedSprite2D:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../AnimatedSprite2D:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
 }
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ewk0"]
@@ -346,6 +408,66 @@ tracks/10/keys = {
 "args": [],
 "method": &"_allow_movement"
 }]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Dracaufeu:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(26.4, 27.3, 28.4, 31.7, 33, 35, 37.5, 40, 42.6, 45, 48.83696),
+"transitions": PackedFloat32Array(2, 2, -2, 1, -2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(669, -854), Vector2(1288, -777), Vector2(1329, 4), Vector2(553, -4), Vector2(553, -4), Vector2(553, -356), Vector2(553, 356), Vector2(553, -356), Vector2(553, 356), Vector2(553, -356), Vector2(1100, 4)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Dracaufeu:shouldShoot")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(33, 45.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../AnimatedSprite2D:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(48.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = false
+tracks/14/path = NodePath("../AnimatedSprite2D:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(48.5, 48.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../AnimatedSprite2D:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(48.5, 49.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(4, 0), Vector2(4, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ewk0"]
@@ -688,25 +810,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [false, true, false, true, false, true, false, true, false, true]
 }
-tracks/3/type = "audio"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/path = NodePath("../../../HurtSound")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("20_5cm5d")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("20_5cm5d")
-}],
-"times": PackedFloat32Array(0, 0.1)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
-tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_15kh8"]
 _data = {
@@ -746,8 +863,9 @@ size = Vector2(339.5, 1115.5)
 resource_name = "DracaufeuMain"
 script/source = "extends Node2D
 @export var animatedSprite:AnimatedSprite2D
-
-var shouldShoot=false
+@export var timerShoot:Timer
+@export var shouldShoot=false
+@export var flame:PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -755,8 +873,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed(\"shoot\"):
+	if shouldShoot and timerShoot.is_stopped():
 		animatedSprite.play(\"shooting\")
+		timerShoot.start()
+		var newFlame = flame.instantiate()
+		newFlame.global_position=$Sprite/FlameOrigin.global_position
+		get_tree().root.add_child(newFlame)
+		$ShootSound.play()
 	if animatedSprite.animation==\"shooting\" and animatedSprite.frame==7:
 		animatedSprite.play(\"idle\")
 	pass
@@ -963,49 +1086,44 @@ _data = {
 &"taking_hit": SubResource("Animation_xle81")
 }
 
-[sub_resource type="GDScript" id="GDScript_nt2eh"]
-resource_name = "flame"
-script/source = "extends CharacterBody2D
-
-var SPEED = -500
-
-
-func _physics_process(_delta: float) -> void:
-	velocity.x =  SPEED
-
-	move_and_slide()
-
-
-func _on_hit_box_area_entered(area: Area2D) -> void:
-	if area.is_in_group(\"playerhurtbox\"):
-		area._takeHit()
-		$HitBox/CollisionShape2D.set_deferred(\"disabled\",true)
-	pass # Replace with function body.
-"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5cm5d"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5bov3"]
+random_pitch = 1.0396395
+streams_count = 1
+stream_0/stream = ExtResource("26_5bov3")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mffef"]
-atlas = ExtResource("24_nt2eh")
-region = Rect2(0, 0, 64, 64)
+atlas = ExtResource("27_xle81")
+region = Rect2(0, 0, 600, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2v2b7"]
-atlas = ExtResource("24_nt2eh")
-region = Rect2(64, 0, 64, 64)
+atlas = ExtResource("27_xle81")
+region = Rect2(600, 0, 600, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p35vf"]
-atlas = ExtResource("24_nt2eh")
-region = Rect2(128, 0, 64, 64)
+atlas = ExtResource("27_xle81")
+region = Rect2(1200, 0, 600, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_stxua"]
-atlas = ExtResource("24_nt2eh")
-region = Rect2(192, 0, 64, 64)
+atlas = ExtResource("27_xle81")
+region = Rect2(1800, 0, 600, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37jd4"]
-atlas = ExtResource("24_nt2eh")
-region = Rect2(256, 0, 64, 64)
+atlas = ExtResource("27_xle81")
+region = Rect2(2400, 0, 600, 512)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gfj8f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfj8f"]
+atlas = ExtResource("27_xle81")
+region = Rect2(3000, 0, 600, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so8ax"]
+atlas = ExtResource("27_xle81")
+region = Rect2(3600, 0, 600, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu1ej"]
+atlas = ExtResource("27_xle81")
+region = Rect2(4200, 0, 600, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5w0f0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -1022,23 +1140,20 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_37jd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfj8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so8ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu1ej")
 }],
 "loop": true,
 "name": &"default",
-"speed": 15.0
+"speed": 22.0
 }]
-
-[sub_resource type="Resource" id="Resource_so8ax"]
-script = ExtResource("11_lhp3t")
-amplitude = Vector2(0.1, 0.05)
-metadata/_custom_type_script = "uid://df4napjqetode"
-
-[sub_resource type="Resource" id="Resource_yu1ej"]
-script = ExtResource("14_2ebs2")
-ScaleShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_so8ax")])
-metadata/_custom_type_script = "uid://e0weqyqh15ib"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5w0f0"]
 
 [node name="MainScene" type="Node2D" unique_id=781206447 node_paths=PackedStringArray("timerSpawn")]
 script = SubResource("GDScript_b48ew")
@@ -1157,6 +1272,9 @@ stream = SubResource("AudioStreamRandomizer_b48ew")
 volume_db = 2.845
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="Joueur" unique_id=373995873]
+stream = ExtResource("21_5cm5d")
+volume_db = 4.915
+pitch_scale = 0.94
 
 [node name="EnemyHurtBox" type="Area2D" parent="." unique_id=547700438 groups=["enemyhurtbox"]]
 position = Vector2(-108, -2092)
@@ -1203,10 +1321,12 @@ one_shot = true
 [node name="Marker2D" type="Marker2D" parent="." unique_id=619428847]
 position = Vector2(1235, -431)
 
-[node name="Dracaufeu" type="Node2D" parent="." unique_id=475992584 node_paths=PackedStringArray("animatedSprite")]
-position = Vector2(1022, -934)
+[node name="Dracaufeu" type="Node2D" parent="." unique_id=475992584 node_paths=PackedStringArray("animatedSprite", "timerShoot")]
+position = Vector2(669, -854)
 script = SubResource("GDScript_5oxhp")
 animatedSprite = NodePath("Sprite")
+timerShoot = NodePath("TimerShoot")
+flame = ExtResource("25_5cm5d")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Dracaufeu" unique_id=640033959]
 position = Vector2(3.85195e-06, 1.9818544e-06)
@@ -1214,7 +1334,6 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_mffef")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.3701626
 
 [node name="EnemyHurtBox" type="Area2D" parent="Dracaufeu/Sprite" unique_id=699591666 node_paths=PackedStringArray("animationPlayer") groups=["enemyhurtbox"]]
 position = Vector2(-108, -2092)
@@ -1246,8 +1365,12 @@ fade_out = 0.14358737
 shakerPreset = SubResource("Resource_5bov3")
 metadata/_custom_type_script = "uid://cpqa3s6je741u"
 
+[node name="FlameOrigin" type="Marker2D" parent="Dracaufeu/Sprite" unique_id=747231031]
+position = Vector2(-43.348618, -2.2978134)
+scale = Vector2(0.19999999, 0.19999999)
+
 [node name="Arrow" type="Sprite2D" parent="Dracaufeu" unique_id=734973329]
-position = Vector2(-190.66275, -171.69711)
+position = Vector2(-190.62965, -171.67586)
 scale = Vector2(5, 5)
 texture = ExtResource("21_5oxhp")
 
@@ -1262,7 +1385,6 @@ label_settings = SubResource("LabelSettings_2h5y0")
 
 [node name="ShakerComponent2D" type="Node2D" parent="Dracaufeu/Arrow" unique_id=1641885950]
 script = ExtResource("9_m1efj")
-is_playing = true
 AutoPlay = true
 shakerPreset = SubResource("Resource_5oxhp")
 metadata/_custom_type_script = "uid://cpqa3s6je741u"
@@ -1270,36 +1392,21 @@ metadata/_custom_type_script = "uid://cpqa3s6je741u"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Dracaufeu" unique_id=1222921434]
 libraries/ = SubResource("AnimationLibrary_s8qe6")
 
-[node name="flame" type="CharacterBody2D" parent="." unique_id=1364565524]
+[node name="TimerShoot" type="Timer" parent="Dracaufeu" unique_id=1118198827]
+one_shot = true
+autostart = true
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="Dracaufeu" unique_id=2083873440]
+stream = SubResource("AudioStreamRandomizer_5bov3")
+volume_db = 8.796
+
+[node name="flame" parent="." unique_id=625412286 instance=ExtResource("25_5cm5d")]
 position = Vector2(5713, -3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=204478205]
+visible = false
+z_index = -2
+position = Vector2(-64, 0)
 scale = Vector2(4, 4)
-script = SubResource("GDScript_nt2eh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flame" unique_id=909278580]
-position = Vector2(228, -357)
-shape = SubResource("CircleShape2D_5cm5d")
-disabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="flame" unique_id=322655695]
-scale = Vector2(0.90622205, 1.0173347)
-sprite_frames = SubResource("SpriteFrames_gfj8f")
-autoplay = "default"
-frame_progress = 0.39285088
-
-[node name="ShakerComponent2D" type="Node2D" parent="flame/AnimatedSprite2D" unique_id=1964784232]
-script = ExtResource("9_m1efj")
-is_playing = true
-AutoPlay = true
-shake_speed = 2.0
-shakerPreset = SubResource("Resource_yu1ej")
-metadata/_custom_type_script = "uid://cpqa3s6je741u"
-
-[node name="HitBox" type="Area2D" parent="flame" unique_id=2073726948]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flame/HitBox" unique_id=1361649465]
-position = Vector2(-7.5000153, 1.2500153)
-shape = SubResource("CircleShape2D_5w0f0")
-
-[connection signal="area_entered" from="flame/HitBox" to="flame" method="_on_hit_box_area_entered"]
+sprite_frames = SubResource("SpriteFrames_5w0f0")
+frame_progress = 0.38426673

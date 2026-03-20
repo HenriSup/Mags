@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://q14820moub2w"
+path="res://.godot/imported/00c3 - SE_KIRISAKIJS.wav-b4d4a84b3e0360ad58e8f95f0494f51d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Hurt/00c3 - SE_KIRISAKIJS.wav"
+dest_files=["res://.godot/imported/00c3 - SE_KIRISAKIJS.wav-b4d4a84b3e0360ad58e8f95f0494f51d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dr4ifaqa28ydb"
+path="res://.godot/imported/01a1 - SE_REACFIRE.wav-65e96f124a65ec69e0778d0509e94b86.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/DracauFeu/01a1 - SE_REACFIRE.wav"
+dest_files=["res://.godot/imported/01a1 - SE_REACFIRE.wav-65e96f124a65ec69e0778d0509e94b86.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -358,6 +358,7 @@ debug_color = Color(0.9186078, 0.25234058, 0.34601468, 0.41960785)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1660224528]
 stream = SubResource("AudioStreamRandomizer_bcpjk")
+volume_db = -8.796
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=748816699]
 wait_time = 4.0
