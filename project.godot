@@ -32,6 +32,7 @@ enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
 [global_group]
 
 enemyhurtbox=""
+playerhurtbox=""
 
 [input]
 

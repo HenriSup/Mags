@@ -19,6 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://bl60xfvcbheqr" path="res://Scenes/player_bullet.tscn" id="17_psl12"]
 [ext_resource type="AudioStream" uid="uid://dc5wwre3j6yp5" path="res://Assets/Audio/SFX/00fc - SE_AIRSHOT.wav" id="18_2ebs2"]
 [ext_resource type="PackedScene" uid="uid://ddxppxn4q54ru" path="res://Scenes/pokemon.tscn" id="19_oyb3p"]
+[ext_resource type="AudioStream" uid="uid://doepndsydvr10" path="res://Assets/Audio/SFX/015c - SE_PLADAMAGEM.wav" id="20_5cm5d"]
+[ext_resource type="Texture2D" uid="uid://bdj7467ccgemt" path="res://Assets/Sprites/charizard.png" id="20_8edxt"]
+[ext_resource type="Texture2D" uid="uid://c7wmgcvilegjr" path="res://Assets/Sprites/arrowBoss.png" id="21_5oxhp"]
+[ext_resource type="Script" uid="uid://gsirvhsesq8" path="res://addons/shaker/data/Vector2/ShakerTypeRandom2D.gd" id="21_nt2eh"]
+[ext_resource type="FontFile" uid="uid://crtajsvqo5ude" path="res://Assets/Fonts/Not Jam Giant UI 22.ttf" id="22_8edxt"]
+[ext_resource type="Texture2D" uid="uid://b1gygvxdlwfx2" path="res://Assets/Sprites/flames.png" id="24_nt2eh"]
 
 [sub_resource type="GDScript" id="GDScript_b48ew"]
 resource_name = "Game"
@@ -579,6 +585,135 @@ particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
+[sub_resource type="GDScript" id="GDScript_5cm5d"]
+resource_name = "playerHurtBox"
+script/source = "extends Area2D
+@export var player:Player
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _takeHit():
+	player._takeHit()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nt2eh"]
+radius = 31.60208
+
+[sub_resource type="Resource" id="Resource_nt2eh"]
+script = ExtResource("21_nt2eh")
+amplitude = Vector2(8, 8)
+metadata/_custom_type_script = "uid://gsirvhsesq8"
+
+[sub_resource type="Resource" id="Resource_xle81"]
+script = ExtResource("14_2ebs2")
+PositionShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_nt2eh")])
+metadata/_custom_type_script = "uid://e0weqyqh15ib"
+
+[sub_resource type="Animation" id="Animation_s8qe6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yb0ja"]
+resource_name = "hurt"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35000002, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_disable_movement"
+}, {
+"args": [],
+"method": &"_allow_movement"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("GPUParticles2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35000002, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../HurtSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("20_5cm5d")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("20_5cm5d")
+}],
+"times": PackedFloat32Array(0, 0.1)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15kh8"]
+_data = {
+&"RESET": SubResource("Animation_s8qe6"),
+&"hurt": SubResource("Animation_yb0ja")
+}
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b48ew"]
 random_pitch = 1.0657237
 streams_count = 1
@@ -603,9 +738,307 @@ func _takeHit():
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyb3p"]
-size = Vector2(339, 1183)
+size = Vector2(339.5, 1115.5)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oyb3p"]
+
+[sub_resource type="GDScript" id="GDScript_5oxhp"]
+resource_name = "DracaufeuMain"
+script/source = "extends Node2D
+@export var animatedSprite:AnimatedSprite2D
+
+var shouldShoot=false
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"shoot\"):
+		animatedSprite.play(\"shooting\")
+	if animatedSprite.animation==\"shooting\" and animatedSprite.frame==7:
+		animatedSprite.play(\"idle\")
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cm5d"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bov3"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xle81"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8qe6"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb0ja"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15kh8"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viu5a"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b00ha"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urcnp"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(2048, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpyod"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(2304, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mplvr"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(2560, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vggli"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(2816, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0xgx"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(3072, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrumr"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(3328, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbbok"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(3584, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0uwk"]
+atlas = ExtResource("20_8edxt")
+region = Rect2(3840, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mffef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cm5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bov3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xle81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8qe6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb0ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15kh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viu5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b00ha")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urcnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpyod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mplvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vggli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0xgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrumr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbbok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0uwk")
+}],
+"loop": false,
+"name": &"shooting",
+"speed": 15.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_8edxt"]
+resource_name = "Dracaufeu"
+script/source = "extends Area2D
+@export var animationPlayer:AnimationPlayer
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _takeHit():
+	animationPlayer.play(\"taking_hit\")
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8edxt"]
+radius = 11.8
+height = 35.99998
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5oxhp"]
+radius = 5.190706
+height = 41.124287
+
+[sub_resource type="Resource" id="Resource_5cm5d"]
+script = ExtResource("21_nt2eh")
+amplitude = Vector2(20, 20)
+metadata/_custom_type_script = "uid://gsirvhsesq8"
+
+[sub_resource type="Resource" id="Resource_5bov3"]
+script = ExtResource("14_2ebs2")
+PositionShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_5cm5d")])
+metadata/_custom_type_script = "uid://e0weqyqh15ib"
+
+[sub_resource type="LabelSettings" id="LabelSettings_2h5y0"]
+font = ExtResource("22_8edxt")
+font_size = 22
+
+[sub_resource type="Resource" id="Resource_8edxt"]
+script = ExtResource("11_lhp3t")
+amplitude = Vector2(3, 3)
+metadata/_custom_type_script = "uid://df4napjqetode"
+
+[sub_resource type="Resource" id="Resource_5oxhp"]
+script = ExtResource("14_2ebs2")
+PositionShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_8edxt")])
+metadata/_custom_type_script = "uid://e0weqyqh15ib"
+
+[sub_resource type="Animation" id="Animation_xle81"]
+resource_name = "taking_hit"
+length = 0.2
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/ShakerComponent2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"force_stop_shake"
+}, {
+"args": [],
+"method": &"play_shake"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s8qe6"]
+_data = {
+&"taking_hit": SubResource("Animation_xle81")
+}
+
+[sub_resource type="GDScript" id="GDScript_nt2eh"]
+resource_name = "flame"
+script/source = "extends CharacterBody2D
+
+var SPEED = -500
+
+
+func _physics_process(_delta: float) -> void:
+	velocity.x =  SPEED
+
+	move_and_slide()
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group(\"playerhurtbox\"):
+		area._takeHit()
+		$HitBox/CollisionShape2D.set_deferred(\"disabled\",true)
+	pass # Replace with function body.
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cm5d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mffef"]
+atlas = ExtResource("24_nt2eh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v2b7"]
+atlas = ExtResource("24_nt2eh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p35vf"]
+atlas = ExtResource("24_nt2eh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stxua"]
+atlas = ExtResource("24_nt2eh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37jd4"]
+atlas = ExtResource("24_nt2eh")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfj8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mffef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v2b7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p35vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stxua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37jd4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="Resource" id="Resource_so8ax"]
+script = ExtResource("11_lhp3t")
+amplitude = Vector2(0.1, 0.05)
+metadata/_custom_type_script = "uid://df4napjqetode"
+
+[sub_resource type="Resource" id="Resource_yu1ej"]
+script = ExtResource("14_2ebs2")
+ScaleShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_so8ax")])
+metadata/_custom_type_script = "uid://e0weqyqh15ib"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5w0f0"]
 
 [node name="MainScene" type="Node2D" unique_id=781206447 node_paths=PackedStringArray("timerSpawn")]
 script = SubResource("GDScript_b48ew")
@@ -648,7 +1081,7 @@ shape = SubResource("CircleShape2D_7ewk0")
 [node name="SpriteHolder" type="Node2D" parent="Joueur/Offset" unique_id=1537462783]
 
 [node name="ShakeContainer" type="Node2D" parent="Joueur/Offset/SpriteHolder" unique_id=1600341810]
-position = Vector2(3.4460263, 3.7433627)
+position = Vector2(3.4460258, 3.7433643)
 
 [node name="ShakerComponent2D" type="Node2D" parent="Joueur/Offset/SpriteHolder/ShakeContainer" unique_id=864861535]
 script = ExtResource("9_m1efj")
@@ -690,6 +1123,27 @@ process_material = SubResource("ParticleProcessMaterial_m1efj")
 [node name="Marker2D" type="Marker2D" parent="Joueur/Offset/SpriteHolder/ShakeContainer" unique_id=806720811]
 position = Vector2(30.553955, 22.256638)
 
+[node name="PlayerHurtBox" type="Area2D" parent="Joueur/Offset/SpriteHolder/ShakeContainer" unique_id=113851914 node_paths=PackedStringArray("player") groups=["playerhurtbox"]]
+collision_layer = 2
+collision_mask = 2
+script = SubResource("GDScript_5cm5d")
+player = NodePath("../../../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Joueur/Offset/SpriteHolder/ShakeContainer/PlayerHurtBox" unique_id=1346439122]
+position = Vector2(-55.446045, 4.2566376)
+shape = SubResource("CircleShape2D_nt2eh")
+debug_color = Color(0.960712, 0.17851803, 0.23765156, 0.41960785)
+
+[node name="HurtShaker" type="Node2D" parent="Joueur/Offset/SpriteHolder/ShakeContainer" unique_id=1425425439]
+script = ExtResource("9_m1efj")
+duration = 0.5
+fade_in = 0.016176006
+shakerPreset = SubResource("Resource_xle81")
+metadata/_custom_type_script = "uid://cpqa3s6je741u"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Joueur/Offset/SpriteHolder/ShakeContainer" unique_id=34408499]
+libraries/ = SubResource("AnimationLibrary_15kh8")
+
 [node name="KirbyStarSFX" type="AudioStreamPlayer2D" parent="Joueur/Offset" unique_id=248027288]
 volume_db = 13.214
 attenuation = 0.37892905
@@ -701,6 +1155,8 @@ one_shot = true
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="Joueur" unique_id=343278855]
 stream = SubResource("AudioStreamRandomizer_b48ew")
 volume_db = 2.845
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="Joueur" unique_id=373995873]
 
 [node name="EnemyHurtBox" type="Area2D" parent="." unique_id=547700438 groups=["enemyhurtbox"]]
 position = Vector2(-108, -2092)
@@ -746,3 +1202,104 @@ one_shot = true
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=619428847]
 position = Vector2(1235, -431)
+
+[node name="Dracaufeu" type="Node2D" parent="." unique_id=475992584 node_paths=PackedStringArray("animatedSprite")]
+position = Vector2(1022, -934)
+script = SubResource("GDScript_5oxhp")
+animatedSprite = NodePath("Sprite")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Dracaufeu" unique_id=640033959]
+position = Vector2(3.85195e-06, 1.9818544e-06)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mffef")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.3701626
+
+[node name="EnemyHurtBox" type="Area2D" parent="Dracaufeu/Sprite" unique_id=699591666 node_paths=PackedStringArray("animationPlayer") groups=["enemyhurtbox"]]
+position = Vector2(-108, -2092)
+collision_layer = 8
+collision_mask = 8
+script = SubResource("GDScript_8edxt")
+animationPlayer = NodePath("../../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dracaufeu/Sprite/EnemyHurtBox" unique_id=1472802564]
+position = Vector2(112.59998, 2097.8)
+rotation = 1.5707964
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_8edxt")
+debug_color = Color(0.7228872, 0.14318874, 0.24300694, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Dracaufeu/Sprite/EnemyHurtBox" unique_id=696892691]
+position = Vector2(85.00002, 2086.5999)
+rotation = 1.701696
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_5oxhp")
+debug_color = Color(0.9186078, 0.25234058, 0.34601468, 0.41960785)
+
+[node name="ShakerComponent2D" type="Node2D" parent="Dracaufeu/Sprite" unique_id=1051046889]
+scale = Vector2(0.99999994, 0.99999994)
+script = ExtResource("9_m1efj")
+duration = 0.5
+fade_in = 0.0027621358
+fade_out = 0.14358737
+shakerPreset = SubResource("Resource_5bov3")
+metadata/_custom_type_script = "uid://cpqa3s6je741u"
+
+[node name="Arrow" type="Sprite2D" parent="Dracaufeu" unique_id=734973329]
+position = Vector2(-190.66275, -171.69711)
+scale = Vector2(5, 5)
+texture = ExtResource("21_5oxhp")
+
+[node name="Label" type="Label" parent="Dracaufeu/Arrow" unique_id=1847163741]
+texture_filter = 3
+offset_left = -22.199999
+offset_top = -26.199997
+offset_right = 21.800001
+offset_bottom = 2.800003
+text = "EGO"
+label_settings = SubResource("LabelSettings_2h5y0")
+
+[node name="ShakerComponent2D" type="Node2D" parent="Dracaufeu/Arrow" unique_id=1641885950]
+script = ExtResource("9_m1efj")
+is_playing = true
+AutoPlay = true
+shakerPreset = SubResource("Resource_5oxhp")
+metadata/_custom_type_script = "uid://cpqa3s6je741u"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dracaufeu" unique_id=1222921434]
+libraries/ = SubResource("AnimationLibrary_s8qe6")
+
+[node name="flame" type="CharacterBody2D" parent="." unique_id=1364565524]
+position = Vector2(5713, -3)
+scale = Vector2(4, 4)
+script = SubResource("GDScript_nt2eh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flame" unique_id=909278580]
+position = Vector2(228, -357)
+shape = SubResource("CircleShape2D_5cm5d")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="flame" unique_id=322655695]
+scale = Vector2(0.90622205, 1.0173347)
+sprite_frames = SubResource("SpriteFrames_gfj8f")
+autoplay = "default"
+frame_progress = 0.39285088
+
+[node name="ShakerComponent2D" type="Node2D" parent="flame/AnimatedSprite2D" unique_id=1964784232]
+script = ExtResource("9_m1efj")
+is_playing = true
+AutoPlay = true
+shake_speed = 2.0
+shakerPreset = SubResource("Resource_yu1ej")
+metadata/_custom_type_script = "uid://cpqa3s6je741u"
+
+[node name="HitBox" type="Area2D" parent="flame" unique_id=2073726948]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flame/HitBox" unique_id=1361649465]
+position = Vector2(-7.5000153, 1.2500153)
+shape = SubResource("CircleShape2D_5w0f0")
+
+[connection signal="area_entered" from="flame/HitBox" to="flame" method="_on_hit_box_area_entered"]

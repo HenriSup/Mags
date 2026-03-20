@@ -1,8 +1,9 @@
+class_name Player
 extends CharacterBody2D
 
 @export var player_bullet: PackedScene
 @export var shooting_sprite: AnimatedSprite2D
-var can_move = false
+@export var can_move = false
 const SPEED = 600.0
 
 func _physics_process(_delta):
@@ -31,3 +32,8 @@ func _allow_movement():
 	
 func _disable_movement():
 	can_move=false
+
+func _takeHit():
+	print("ouillle")
+	$Offset/SpriteHolder/ShakeContainer/AnimationPlayer2.play("hurt")
+	pass
