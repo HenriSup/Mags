@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var shooting_sprite: AnimatedSprite2D
 @export var can_move = false
 @export var should_go_center = false
+@export var should_go_left = false
 @export var is_falling = false
 const SPEED = 600.0
 
@@ -33,7 +34,13 @@ func _physics_process(_delta):
 		if ((global_position.x > -5) and (global_position.x <5 )):
 			if ((global_position.y > -5) and (global_position.y < 5)):
 				should_go_center=false
-
+	if should_go_left:
+		var direction_left = global_position.direction_to(Vector2(-600,0))
+		velocity= direction_left * SPEED/2
+		move_and_slide()
+		if ((global_position.x > -590) and (global_position.x <-610 )):
+			if ((global_position.y > -10) and (global_position.y < 10)):
+				should_go_left=false
 
 func _allow_movement():
 	can_move=true
@@ -46,6 +53,12 @@ func _activate_move_center():
 	
 func _disable_move_center():
 	should_go_center = false
+	
+func _activate_move_left():
+	should_go_left = true
+	
+func _disable_move_left():
+	should_go_left = false
 
 func _takeHit():
 	print("ouillle")
