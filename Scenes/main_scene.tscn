@@ -226,6 +226,18 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(4, 4)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Joueur/Offset/SpriteHolder/ShakeContainer/AnimatedSprite2D:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ewk0"]
 particle_flag_disable_z = true
@@ -276,10 +288,10 @@ tracks/0/path = NodePath(".:material:shader_parameter/offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 132.46666),
-"transitions": PackedFloat32Array(-1.2745605, 1),
+"times": PackedFloat32Array(0, 50.4, 51.5, 69.8),
+"transitions": PackedFloat32Array(-1.2745605, 1, 2, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(60000, 0)]
+"values": [Vector2(0, 0), Vector2(21800, 0), Vector2(21800, 0), Vector2(21800, 20000)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -402,11 +414,17 @@ tracks/10/path = NodePath("../Joueur")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(10.4),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(10.4, 45.4, 45.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"_allow_movement"
+}, {
+"args": [],
+"method": &"_disable_movement"
+}, {
+"args": [],
+"method": &"_activate_move_center"
 }]
 }
 tracks/11/type = "value"
@@ -416,10 +434,10 @@ tracks/11/path = NodePath("../Dracaufeu:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(26.4, 27.3, 28.4, 31.7, 33, 35, 37.5, 40, 42.6, 45, 48.83696),
-"transitions": PackedFloat32Array(2, 2, -2, 1, -2, -2, -2, -2, -2, -2, -2),
+"times": PackedFloat32Array(26.4, 27.3, 28.4, 31.7, 33, 35, 37.5, 40, 42.6, 45, 48.83696, 51.3, 52.3),
+"transitions": PackedFloat32Array(2, 2, -2, 1, -2, -2, -2, -2, -2, -2, -2, -2, 1),
 "update": 0,
-"values": [Vector2(669, -854), Vector2(1288, -777), Vector2(1329, 4), Vector2(553, -4), Vector2(553, -4), Vector2(553, -356), Vector2(553, 356), Vector2(553, -356), Vector2(553, 356), Vector2(553, -356), Vector2(1100, 4)]
+"values": [Vector2(669, -854), Vector2(1288, -777), Vector2(1329, 4), Vector2(553, -4), Vector2(553, -4), Vector2(553, -356), Vector2(553, 356), Vector2(553, -356), Vector2(553, 356), Vector2(553, -356), Vector2(1100, 4), Vector2(1100, 4), Vector2(1100, -900)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -428,7 +446,7 @@ tracks/12/path = NodePath("../Dracaufeu:shouldShoot")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(33, 45.3),
+"times": PackedFloat32Array(32.4, 45.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -464,10 +482,49 @@ tracks/15/path = NodePath("../AnimatedSprite2D:scale")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(48.5, 49.3),
-"transitions": PackedFloat32Array(0.5, 1),
+"times": PackedFloat32Array(48.5, 48.9, 51, 51.4),
+"transitions": PackedFloat32Array(-2, 1, -2, 1),
 "update": 0,
-"values": [Vector2(4, 0), Vector2(4, 4)]
+"values": [Vector2(4, 0), Vector2(4, 4), Vector2(4, 4), Vector2(4, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Joueur/Offset/SpriteHolder/ShakeContainer/AnimatedSprite2D:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(48.5, 48.8, 51, 51.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/17/type = "method"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../Joueur/Offset/SpriteHolder/ShakeContainer/VibrateShaker")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(48.5, 50.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_shake"
+}, {
+"args": [],
+"method": &"stop_shake"
+}]
+}
+tracks/18/type = "animation"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Joueur/Offset/SpriteHolder/ShakeContainer/AnimationPlayer")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"clips": PackedStringArray("falling"),
+"times": PackedFloat32Array(51.4)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ewk0"]
@@ -653,6 +710,47 @@ tracks/2/keys = {
 "update": 1,
 "values": [-83.00001]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShakeContainer/AnimatedSprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_15kh8"]
+resource_name = "falling"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShakeContainer/AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShakeContainer/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
 
 [sub_resource type="Animation" id="Animation_drdnd"]
 resource_name = "flying"
@@ -694,10 +792,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0, 10.0, -20.0, -22.0, -20.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShakeContainer/AnimatedSprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ioaeq"]
 _data = {
 &"RESET": SubResource("Animation_76v2p"),
+&"falling": SubResource("Animation_15kh8"),
 &"flying": SubResource("Animation_drdnd")
 }
 
@@ -830,6 +941,16 @@ _data = {
 &"RESET": SubResource("Animation_s8qe6"),
 &"hurt": SubResource("Animation_yb0ja")
 }
+
+[sub_resource type="Resource" id="Resource_s8qe6"]
+script = ExtResource("21_nt2eh")
+amplitude = Vector2(20, 20)
+metadata/_custom_type_script = "uid://gsirvhsesq8"
+
+[sub_resource type="Resource" id="Resource_yb0ja"]
+script = ExtResource("14_2ebs2")
+PositionShake = Array[ExtResource("10_7ewk0")]([SubResource("Resource_s8qe6")])
+metadata/_custom_type_script = "uid://e0weqyqh15ib"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b48ew"]
 random_pitch = 1.0657237
@@ -1192,11 +1313,12 @@ position = Vector2(-52, 8)
 shape = SubResource("CircleShape2D_7ewk0")
 
 [node name="Offset" type="Node2D" parent="Joueur" unique_id=1453962805]
+position = Vector2(-642.00006, 272.99988)
 
 [node name="SpriteHolder" type="Node2D" parent="Joueur/Offset" unique_id=1537462783]
 
 [node name="ShakeContainer" type="Node2D" parent="Joueur/Offset/SpriteHolder" unique_id=1600341810]
-position = Vector2(3.4460258, 3.7433643)
+position = Vector2(3.7960532, 3.6531954)
 
 [node name="ShakerComponent2D" type="Node2D" parent="Joueur/Offset/SpriteHolder/ShakeContainer" unique_id=864861535]
 script = ExtResource("9_m1efj")
@@ -1229,6 +1351,7 @@ speed_scale = 1.2
 z_index = -1
 material = SubResource("CanvasItemMaterial_huasi")
 position = Vector2(-99, 23.000122)
+rotation = 1.5707964
 amount = 22
 texture = ExtResource("8_huasi")
 lifetime = 1.5
@@ -1258,6 +1381,13 @@ metadata/_custom_type_script = "uid://cpqa3s6je741u"
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Joueur/Offset/SpriteHolder/ShakeContainer" unique_id=34408499]
 libraries/ = SubResource("AnimationLibrary_15kh8")
+
+[node name="VibrateShaker" type="Node2D" parent="Joueur/Offset/SpriteHolder/ShakeContainer" unique_id=448205309]
+script = ExtResource("9_m1efj")
+fade_in = 0.0049787536
+fade_out = 0.08246955
+shakerPreset = SubResource("Resource_yb0ja")
+metadata/_custom_type_script = "uid://cpqa3s6je741u"
 
 [node name="KirbyStarSFX" type="AudioStreamPlayer2D" parent="Joueur/Offset" unique_id=248027288]
 volume_db = 13.214
@@ -1400,13 +1530,11 @@ autostart = true
 stream = SubResource("AudioStreamRandomizer_5bov3")
 volume_db = 8.796
 
-[node name="flame" parent="." unique_id=625412286 instance=ExtResource("25_5cm5d")]
-position = Vector2(5713, -3)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=204478205]
 visible = false
 z_index = -2
 position = Vector2(-64, 0)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_5w0f0")
-frame_progress = 0.38426673
+autoplay = "default"
+frame_progress = 0.12536855

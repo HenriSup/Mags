@@ -4,13 +4,15 @@ extends CharacterBody2D
 @export var player_bullet: PackedScene
 @export var shooting_sprite: AnimatedSprite2D
 @export var can_move = false
+@export var should_go_center = false
+@export var is_falling = false
 const SPEED = 600.0
 
 func _physics_process(_delta):
-	
-	var direction = Input.get_vector("left","right","up","down")
-	velocity= direction * SPEED
+		
 	if can_move:
+		var direction = Input.get_vector("left","right","up","down")
+		velocity= direction * SPEED
 		move_and_slide()
 		
 	var wantsToShoot = false
@@ -24,7 +26,13 @@ func _physics_process(_delta):
 		shooting_sprite.frame=0
 		shooting_sprite.play("default")
 		$ShootSound.play()
-		pass
+	if should_go_center:
+		var direction_center = global_position.direction_to(Vector2(0,0))
+		velocity= direction_center * SPEED/3
+		move_and_slide()
+		if ((global_position.x > -5) and (global_position.x <5 )):
+			if ((global_position.y > -5) and (global_position.y < 5)):
+				should_go_center=false
 
 
 func _allow_movement():
@@ -32,6 +40,12 @@ func _allow_movement():
 	
 func _disable_movement():
 	can_move=false
+
+func _activate_move_center():
+	should_go_center = true
+	
+func _disable_move_center():
+	should_go_center = false
 
 func _takeHit():
 	print("ouillle")
